@@ -1,0 +1,20 @@
+<div class="container">
+	<h1>Profile Page</h1>
+
+	{{#if user}}
+	    username: {{user.username}}
+	{{/if}}
+	<form action="/createstory" method="post">
+	  <input type="text" name="name" value="Story">
+	  <input type="submit" value="Submit">
+	</form>
+
+	
+</div>
+<button class="newJoke">New Joke</button>
+<div class="text"></div>
+
+{{#each stories}}
+    <li data-storyId="{{this._id}}">{{this.name}} <button class="remove" >delete</button></li>
+
+{{/each}}  
