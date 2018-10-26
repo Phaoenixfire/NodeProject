@@ -47,8 +47,8 @@ passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // mongoose
-mongoose.connect('mongodb://Capstone:Capstone1@ds117773.mlab.com:17773/capstone')
-//mongoose.connect('mongodb://localhost/boiler');
+//mongoose.connect('mongodb://Capstone:Capstone1@ds117773.mlab.com:17773/capstone')
+mongoose.connect('mongodb://localhost/stories');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

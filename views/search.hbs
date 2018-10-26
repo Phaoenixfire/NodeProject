@@ -34,12 +34,15 @@
             console.log(res.stories)
             let html = "";
             for (let i = 0; i < res.stories.length; i++) {
+                var data_str = encodeURIComponent(JSON.stringify(res.stories[i]));
+                
+                //console.log(decodeURIComponent(data_str)) 
                 html += `
                 <div class="stories">
                     <h4>${res.stories[i].title}</h4>
                     ${console.log(res.stories[i].title)}
                     <p>${res.stories[i].lines.join("<br>")}</p>
-                    <button data-storyId=\'' ${JSON.stringify(res.stories[i]).replace(/'/g, "\\'"); }'\'>; class="saveButton"> Save Story </button>
+                    <button data-storyId=${data_str} class="saveButton"> Save Story </button>
                     
                     </div>
                 `
@@ -53,11 +56,13 @@
             $('.saveButton').click(function () {
                 console.log(this)
                 window.t = this; //So you can mess with it in the console 
-                $(this).parent().find('button').data('storyId')
-                console.log(res.stories['.storyId'])
-                //$.post("/profile", { author: this.value }, function (res) {
-                        
-               // })
+                let obj = JSON.parse(decodeURIComponent($(this).data('storyid')))
+                console.log('obj')
+
+                console.log(obj)
+                $.post("/saveStory", {story: JSON.stringify(obj)}, function (err, res) {
+                    console.log(err,res)         
+                })
             })
         });
 
