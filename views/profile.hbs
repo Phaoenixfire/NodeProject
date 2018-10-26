@@ -1,20 +1,26 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+
 <div class="container">
-	<h1>Profile Page</h1>
+	<h1>Welcome {{user.username}}</h1>
 
-	{{#if user}}
-	    username: {{user.username}}
-	{{/if}}
-	<form action="/createstory" method="post">
-	  <input type="text" name="name" value="Story">
-	  <input type="submit" value="Submit">
-	</form>
+{{#if user}}
 
-	
-</div>
-<button class="newJoke">New Joke</button>
-<div class="text"></div>
+    <a href="/logout">LogOut</a>
+	<a href="/search">Search</a>
+{{/if}}</div>
+
+	<div class="public">
+		<h3>Create your own Emoji Story</h3>
+		<form action="/createstory" method="post">
+	 		<input type="publictext" name="name" value="Noun1"><br>
+			
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+
+<!--<button class="newJoke">New Joke</button>-->
+
 
 {{#each stories}}
     <li data-storyId="{{this._id}}">{{this.name}} <button class="remove" >delete</button></li>
-
 {{/each}}  

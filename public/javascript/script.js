@@ -30,19 +30,30 @@ $(document).ready(function() {
 			 //$('.like').data('jokeData', data);
 		   }
 		 });
+		 $.get("/ping", function(res){
+			 console.log(res)
+		 })
+		 $.post("/createstory", {name:"myName"}, function(res){
+			console.log(res)
+		})
+		 fetch('/ping')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(JSON.stringify(myJson));
+  });
 	   });
 
+		 function fetchPoetryAuthor(){
 
-
-
-
-
-
-
-
-
-
-
-});
-
-
+			fetch('http://poetrydb.org/author')
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			console.log(JSON.stringify(myJson));
+		});
+	}
+	fetchPoetryAuthor();
+})
