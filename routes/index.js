@@ -27,9 +27,9 @@ console.log(translate.translate("the house is on fire and the cat is eating the 
 
 /*https://apifootball.com/api/?action=get_countries&APIkey=xxxxxxxxxxxxxx*/
 
-router.get('/search', async (req, res) => {
+router.get('/search', isLoggedIn, async (req, res) => {
     let authors = await fetchPoetryAuthor("author")
-    console.log(authors)
+    //console.log(authors)
     res.render('search', {authors:authors.authors});
 
 });
@@ -41,15 +41,15 @@ function fetchPoetryAuthor(author){
     return response.json();
   })
   .then(function(myJson) {
-  console.log(JSON.stringify(myJson));
+  //console.log(JSON.stringify(myJson));
     return myJson
   });
 }
 
 router.post('/search', async (req,res)=>{
-    console.log(req.body, "this is req.body", req.body.author)
+    //console.log(req.body, "this is req.body", req.body.author)
     let stories = await fetchPoetryAuthor(`author/${req.body.author}`)
-    console.log(stories)
+    //console.log(stories)
     res.json({stories})
 })
 
@@ -67,24 +67,43 @@ router.get('/', (req, res) => { //Home Page grab all users stories
 router.get('/register', (req, res) => {
     res.render('register', { });
 });
-router.post('/createstory',isLoggedIn, (req, res) => {
-    console.log("post it to createstory", req.body,req.user)
-    let story = new Story(req.body)
+router.post('/saveStory',isLoggedIn, (req, res) => {
+    console.log("post it to saveStory", req.body,req.user)
+
+    let body = JSON.parse(req.body.story)
+    console.log("post it to ", body)
+   
+    let story = new Story(body)
     story.userId = req.user._id
     story.date = new Date()
     //story.name = translate.translate(story.name)
-    wordpos.getAdjectives(req.body.name, function(result){
-        console.log(result);
+    var promise1 =  wordpos.getAdjectives(body.lines.join(' '), function(result){
+        return result
     });
-    wordpos.getNouns(req.body.name, function(result){
-        console.log(result);
+    var promise2 =  wordpos.getNouns(body.lines.join(' '), function(result){
+        return result
     });
-    wordpos.getVerbs(req.body.name, function(result){
-        console.log(result);
+    var promise3 =  wordpos.getVerbs(body.lines.join(' '), function(result){
+        return result
     });
-    //story.save()
+
+    Promise.all([promise1, promise2, promise3]).then(function(values) {
+        console.log('promssesssee', values);
+        story.adjectives = values[0]
+        story.nouns = values[1]
+        story.verbs = values[2]
+        
+        story.save(function(err){
+            if(err){
+                console.log(err)
+                throw err
+            }
+            res.json({'success':true})
+        })
+
+    })
     //fetchDadJoke()
-    res.redirect('/profile')
+    //res.redirect('/profile')
     
 })
 
@@ -112,7 +131,7 @@ function doMadlib(body) {
  
 
 router.delete("/delete_Story",(req,res) =>{
-    console.log("delete", req.body, req.user)
+    //console.log("delete", req.body, req.user)
     Story.remove({_id:req.body.storyid}).then(response =>{
         res.json({deletedid:req.body.storyid})
     })
@@ -166,13 +185,20 @@ router.get('/ping', (req, res) => {
     res.status(200).json({name:"pong"});
 });
 
-module.exports = router;
+
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
-    res.redirect('/');
+    res.redirect('/login');
 }
+
+
+
+
+
+module.exports = router;
+
 
