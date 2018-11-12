@@ -153,10 +153,11 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                     let verbs = story.verbs;
 
                     for (let i = 0; i < adjectives.length; i++) {
-                        // console.log("found it", word, adjectives[i])
+                         //console.log("found it", word, adjectives[i])
                         if (adjectives[i] === word) {
                             
-                            words[i] = `<span class="adjective">${word}</span>`
+                            words[i] = `<span class="adjectives">${word}</span>`
+                            
                         }
                     }
                     for (let i = 0; i < nouns.length; i++) {
@@ -164,6 +165,7 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                         if (nouns[i] === word) {
                             
                             words[i] = `<span class="nouns">${word}</span>`
+                          
                         }
                     }
                     for (let i = 0; i < verbs.length; i++) {
@@ -181,16 +183,15 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
 
         res.render('profile', { user: req.user, stories: stories});
     });
-})
-/*Hey Andrew, look here for some things you tried -->*/
+   })
+/*Hey Andrew, look here for some things you tried -->
 
 router.post('/profile', isLoggedIn, (req, res) => {
-    $('form').submit(async (e) => {
+    $('Test').submit(async (e) => {
         e.preventDefault();
-        $('data-storyId').html(`.data-storyId${$(".user-search-input").val()}`)
-        let queryitem = $('ul.query_items').clone().find('span').remove().end().text();
+        
     })
-});
+});*/
 function doMadlib(body) {
     // we use destructuring to get the values for adjective1, adjective2, etc.
     // from the request params

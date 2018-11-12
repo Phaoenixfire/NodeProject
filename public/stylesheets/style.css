@@ -29,3 +29,33 @@ form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 
 
   display: none;
 }
+
+.user-words input{
+  display: inline-block;
+   width: 80%;
+   margin: auto;
+}
+/*
+.user-nouns{
+float:right;
+display: inline-block;
+clear: right;
+}
+.user-verbs{
+  float: left;
+  display: inline-block;
+  clear: left;
+}
+
+.user-adjectives{
+float: center;
+display: inline-block;
+clear: center;
+}
+
+.user-words{
+  color: lightblue;
+  width: 100%;
+  position: relative;
+}
+*/

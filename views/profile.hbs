@@ -3,33 +3,40 @@
 <div class="container">
 	<h1>Welcome {{user.username}}</h1>
 
-{{#if user}}
+	{{#if user}}
 
-    <a href="/logout">LogOut</a>
+	<a href="/logout">LogOut</a>
 	<a href="/search">Search</a>
-{{/if}}</div>
+	{{/if}}
+</div>
 
-	<div class="public">
-		<h3>Create your own Emoji Story</h3>
-		<form action="/createstory" method="post">
-	 		<input type="publictext" name="name" value="Noun1"><br>
-			
-			<input type="submit" value="Submit">
-		</form>
-	</div>
+<div class="public">
+	<h3>Create your own Emoji Story</h3>
+	<form class="user-words" method="post">
+		<input class="user-nouns" type="publictext" name="name" placeholder="Enter a noun" data-word="nouns"><br>
+		<input class="user-verbs" type="publictext" name="name" placeholder="Enter a verb" data-word="verbs"><br>
+		<input class="user-adjectives" type="publictext" name="name" placeholder="Enter an adjective" data-word="adjectives"><br>
+		<input type="submit" value="Submit">
+	</form>
+<button class="addNoun">Add Noun</button>
+<button class="addVerb">Add Verb</button>
+<button class="addAdjective">Add Adjective</button>
+</div>
+
 
 <!--<button class="newJoke">New Joke</button>-->
 {{{html}}}
 
 {{#each stories}}
-    <li data-storyId="{{this._id}}">
-	{{{this.lines}}}	
-	<button class="remove" >delete</button>
-	<div class="title story">{{this.title}}</div>
+<li data-storyId="{{this._id}}">
+
+	{{{this.lines}}}
+	<button class="remove">delete</button>
+	<!--<div class="title story">{{this.title}}</div>
 	<div class="lines story">{{this.lines}}</div>
 	<div class="nouns story">{{this.nouns}}</div>
 	<div class="verbs story">{{this.verbs}}</div>
 	<div class="adjectives story">{{this.adjectives}}</div>
-	
-	</li>
-{{/each}}  
+	-->
+</li>
+{{/each}}
