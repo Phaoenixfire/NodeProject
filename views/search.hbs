@@ -3,6 +3,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
 
+<a href="/profile"></a>
 
 <select class="js-example-basic-single" name="state">
     {{#each authors}}
@@ -34,18 +35,19 @@
             console.log(res.stories)
             let html = "";
             for (let i = 0; i < res.stories.length; i++) {
-                var data_str = encodeURIComponent(JSON.stringify(res.stories[i]));
-                
-                //console.log(decodeURIComponent(data_str)) 
                 html += `
                 <div class="stories">
                     <h4>${res.stories[i].title}</h4>
                     ${console.log(res.stories[i].title)}
+
                     <p>${res.stories[i].lines.join("<br>")}</p>
-                    <button data-storyId=${data_str} class="saveButton"> Save Story </button>
-                    
+                    ${console.log(res.stories[i]._id)}
+                    <button data-storyId="${res.stories[i]._id}" class="saveButton"> Save Story </button>
                     </div>
                 `
+
+                //  <button data-storyId=${data-str} class="saveButton"> Save Story </button>
+                //<button data-storyId=\'' ${JSON.stringify(res.stories[i]).replace(/'/g, "\\'");} '\'>; class="saveButton"> Save Story </button>
                 //$("#results").append(res.stories[i].title)
                 //$("#results").append(res.stories[i].lines.join("<br>"))
                 //$("#results").append(`<button class="save">Save Story</button>`)
@@ -56,13 +58,12 @@
             $('.saveButton').click(function () {
                 console.log(this)
                 window.t = this; //So you can mess with it in the console 
-                let obj = JSON.parse(decodeURIComponent($(this).data('storyid')))
-                console.log('obj')
+                //let obj = JSON.parse(decodeURIComponenet($(this).data('storyid')))
+                $(this).parent().find('button').data('storyId')
+                console.log(res.stories['.storyId'])
+                //$.post("/profile", { author: this.value }, function (res) {
 
-                console.log(obj)
-                $.post("/saveStory", {story: JSON.stringify(obj)}, function (err, res) {
-                    console.log(err,res)         
-                })
+                // })
             })
         });
 

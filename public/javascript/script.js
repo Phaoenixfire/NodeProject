@@ -44,7 +44,7 @@ $(document).ready(function() {
     console.log(JSON.stringify(myJson));
   });
 	   });
-
+/*
 		 function fetchPoetryAuthor(){
 
 			fetch('http://poetrydb.org/author')
@@ -55,5 +55,5 @@ $(document).ready(function() {
 			console.log(JSON.stringify(myJson));
 		});
 	}
-	fetchPoetryAuthor();
+	fetchPoetryAuthor();*/
 })
