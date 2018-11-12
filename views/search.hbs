@@ -3,7 +3,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
 
-
+<a href="/profile">Profile Page</a>
 <select class="js-example-basic-single" name="state">
     {{#each authors}}
     <option class="selectedAuthor" value="{{this}}">{{this}}</option>
@@ -61,7 +61,9 @@
 
                 console.log(obj)
                 $.post("/saveStory", {story: JSON.stringify(obj)}, function (err, res) {
-                    console.log(err,res)         
+                    
+                    console.log(err,res)       
+                    window.location.href = 'profile' 
                 })
             })
         });
