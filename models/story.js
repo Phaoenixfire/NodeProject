@@ -10,7 +10,8 @@ const Story = new Schema({
     linecount: Number,
     nouns: Array,
     adjectives: Array, 
-    verbs: Array
+    verbs: Array,
+    formattedLines: String
        //add additional formation info later
 });
 

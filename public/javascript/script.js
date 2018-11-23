@@ -22,6 +22,7 @@ $(document).ready(function () {
 		let adjectives = $(this).closest("li").find(".adjectives").toArray().map(function (i) { return i.innerText })
 		let verbs = $(this).closest("li").find(".verbs").toArray().map(function (i) { return i.innerText })
 		let lines = $(this).closest("li").find(".lines").text().trim().split(" ");
+		let formattedLines = $(this).closest("li").find(".lines").html()
 		window.lines = lines
 		$.ajax({
 			url: "save_Story",
@@ -30,7 +31,7 @@ $(document).ready(function () {
 				console.log(res)
 				//$(`li[data-storyid=${res.saveid}]`).save();
 			},
-			data: { storyid: storyid, nouns: JSON.stringify(nouns), verbs: JSON.stringify(verbs), adjectives: JSON.stringify(adjectives), lines: JSON.stringify(lines) },
+			data: { storyid: storyid, nouns: JSON.stringify(nouns), verbs: JSON.stringify(verbs), adjectives: JSON.stringify(adjectives), lines: JSON.stringify(lines), formattedLines:formattedLines },
 
 		});
 	})

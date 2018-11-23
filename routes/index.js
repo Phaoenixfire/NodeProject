@@ -110,7 +110,7 @@ router.post('/saveStory', isLoggedIn, (req, res) => {
         story.adjectives = values[0]
         story.nouns = values[1]
         story.verbs = values[2]
-        //story.lines = body.lines.join(" ").split(" ")
+        story.formattedLines = body.lines.join("<br>")
         story.save(function (err) {
             if (err) {
                 console.log(err)
@@ -142,44 +142,50 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
         let html = `<div class="Test">GIGGITY</div>`
         //let copy = [...stories.lines]
         stories.forEach(function (story) {
-            story.html = []
-            story.lines.forEach(function (line, j) {
+            //story.html = []
+            //let lines = story.formattedLines.split(" ")
+            //console.log(lines)
+            //lines.forEach(function (line, j) {
 
-                let words = line.split(" ")
-                words.forEach(function (word) {
+            //let words = line.split(" ")
+            let words = story.formattedLines.split(" ")
+            let difwords = []
+            words.forEach(function (word) {
 
-                    let adjectives = story.adjectives;
-                    let nouns = story.nouns;
-                    let verbs = story.verbs;
+                let adjectives = story.adjectives;
+                let nouns = story.nouns;
+                let verbs = story.verbs;
+                let w = word;
+                for (let i = 0; i < adjectives.length; i++) {
+                    //console.log("found it", word, adjectives[i])
+                    if (adjectives[i] === word) {
 
-                    for (let i = 0; i < adjectives.length; i++) {
-                        //console.log("found it", word, adjectives[i])
-                        if (adjectives[i] === word) {
+                        w = `<span class="adjectives">${word}</span>`
 
-                            words[i] = `<span class="adjectives">${word}</span>`
-
-                        }
                     }
-                    for (let i = 0; i < nouns.length; i++) {
-                        // console.log("found it", word, adjectives[i])
-                        if (nouns[i] === word) {
+                }
+                for (let i = 0; i < nouns.length; i++) {
+                    // console.log("found it", word, adjectives[i])
+                    if (nouns[i] === word) {
 
-                            words[i] = `<span class="nouns">${word}</span>`
+                        w = `<span class="nouns">${word}</span>`
 
-                        }
                     }
-                    for (let i = 0; i < verbs.length; i++) {
-                        // console.log("found it", word, adjectives[i])
-                        if (verbs[i] === word) {
+                }
+                for (let i = 0; i < verbs.length; i++) {
+                    // console.log("found it", word, adjectives[i])
+                    if (verbs[i] === word) {
 
-                            words[i] = `<span class="verbs">${word}</span>`
-                        }
+                        w = `<span class="verbs">${word}</span>`
                     }
-                })
-                story.lines[j] = words.join(" ")
-                story.html.push(line)
+                }
+                difwords.push(w)
             })
+            story.formattedLines = difwords.join(" ")
+            //story.html.push(line)
+            // })
         })
+
 
         res.render('profile', { user: req.user, stories: stories });
     });
@@ -220,7 +226,7 @@ router.put("/save_Story", (req, res) => {
         response.adjectives = JSON.parse(req.body.adjectives)
         response.nouns = JSON.parse(req.body.nouns)
         response.verbs = JSON.parse(req.body.verbs)
-        response.lines = JSON.parse(req.body.lines)
+        response.formattedLines = req.body.formattedLines
         response.save(function (err) {
             if (err) {
                 console.log(err)
