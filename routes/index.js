@@ -110,7 +110,7 @@ router.post('/saveStory', isLoggedIn, (req, res) => {
         story.adjectives = values[0]
         story.nouns = values[1]
         story.verbs = values[2]
-
+        //story.lines = body.lines.join(" ").split(" ")
         story.save(function (err) {
             if (err) {
                 console.log(err)
@@ -229,9 +229,7 @@ router.put("/save_Story", (req, res) => {
             res.json({ 'success': true })
             //res.redirect('/profile');
         })
-
     })
-
 })
 
 

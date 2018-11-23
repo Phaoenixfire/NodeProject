@@ -21,7 +21,7 @@ $(document).ready(function () {
 		let nouns = $(this).closest("li").find(".nouns").toArray().map(function (i) { return i.innerText })
 		let adjectives = $(this).closest("li").find(".adjectives").toArray().map(function (i) { return i.innerText })
 		let verbs = $(this).closest("li").find(".verbs").toArray().map(function (i) { return i.innerText })
-		let lines = $(this).closest("li").find(".lines").text().split("\n");
+		let lines = $(this).closest("li").find(".lines").text().trim().split(" ");
 		window.lines = lines
 		$.ajax({
 			url: "save_Story",
