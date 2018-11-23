@@ -59,3 +59,98 @@ clear: center;
   position: relative;
 }
 */
+.userWelcome{
+  margin-left:7%;
+}
+
+h3{
+  margin-left:7%;
+}
+.logOut{
+  margin-left: 12%;
+}
+.searchStories{
+
+  padding-left: 40px;
+
+}
+.listedStories{
+
+  padding: 15px;
+  padding-bottom: 30px;
+  border: 2pt black solid;
+  margin-top: 1%;
+  position: relative;
+}
+
+.addButtons{
+  width: 85%;
+  padding: 5px;
+  padding-bottom: 20px;
+
+}
+.public{
+
+  margin-left: 20%;
+  margin-right:20%;
+
+}
+.addNoun{
+  
+  width: 15%;
+  margin-left: 25%;
+}
+
+.addVerb{
+ 
+  width: 15%;
+  margin-left: 4%;
+}
+
+.addAdjective{
+ 
+  width: 15%;
+  margin-left: 4%;
+}
+
+.remove{
+
+  right: 20px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.saveStory{
+
+  left: 20px;
+  position: absolute;
+  bottom: 5px;
+}
+
+.nouns{
+
+  color: blue;
+}
+
+.verbs{
+
+  color:green;
+
+}
+
+.adjectives{
+
+  color: red;
+}
+
+/* For the search Page  */
+
+.search-results{
+  color: black;
+  text-align: center;
+}
+
+.searchPage{
+  text-align: center;
+  margin-right: 40%;
+}

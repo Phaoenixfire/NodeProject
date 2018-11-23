@@ -1,7 +1,12 @@
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
+
+<div class="searchPage">
+<h1 class="pageTitle">A Page of Poets</h1>
+<h6 class="pageDescription">Find your favorite poets and save their poems</h6>
 
 <a href="/profile">Profile Page</a>
 <select class="js-example-basic-single" name="state">
@@ -13,7 +18,7 @@
 
 <div class="search-results"></div>
 <!--<button class="authorSelected">Select Author</button>-->
-
+</div>
 <script>
     $(document).ready(function () {
         $('.js-example-basic-single').select2();
@@ -35,7 +40,7 @@
             let html = "";
             for (let i = 0; i < res.stories.length; i++) {
                 var data_str = encodeURIComponent(JSON.stringify(res.stories[i]));
-                
+
                 //console.log(decodeURIComponent(data_str)) 
                 html += `
                 <div class="stories">
@@ -60,10 +65,10 @@
                 console.log('obj')
 
                 console.log(obj)
-                $.post("/saveStory", {story: JSON.stringify(obj)}, function (err, res) {
-                    
-                    console.log(err,res)       
-                    window.location.href = 'profile' 
+                $.post("/saveStory", { story: JSON.stringify(obj) }, function (err, res) {
+
+                    console.log(err, res)
+                    window.location.href = 'profile'
                 })
             })
         });

@@ -153,25 +153,25 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                     let verbs = story.verbs;
 
                     for (let i = 0; i < adjectives.length; i++) {
-                         //console.log("found it", word, adjectives[i])
+                        //console.log("found it", word, adjectives[i])
                         if (adjectives[i] === word) {
-                            
+
                             words[i] = `<span class="adjectives">${word}</span>`
-                            
+
                         }
                     }
                     for (let i = 0; i < nouns.length; i++) {
                         // console.log("found it", word, adjectives[i])
                         if (nouns[i] === word) {
-                            
+
                             words[i] = `<span class="nouns">${word}</span>`
-                          
+
                         }
                     }
                     for (let i = 0; i < verbs.length; i++) {
                         // console.log("found it", word, adjectives[i])
                         if (verbs[i] === word) {
-                            
+
                             words[i] = `<span class="verbs">${word}</span>`
                         }
                     }
@@ -181,9 +181,9 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
             })
         })
 
-        res.render('profile', { user: req.user, stories: stories});
+        res.render('profile', { user: req.user, stories: stories });
     });
-   })
+})
 /*Hey Andrew, look here for some things you tried -->
 
 router.post('/profile', isLoggedIn, (req, res) => {
@@ -211,6 +211,29 @@ router.delete("/delete_Story", (req, res) => {
     })
 
 })
+
+// Attempt 2018
+router.put("/save_Story", (req, res) => {
+    console.log("save", req.body, req.user, req.body.nouns, JSON.parse(req.body.nouns))
+    Story.findOne({ _id: req.body.storyid }).then(response => {
+        console.log(response)
+        response.adjectives = JSON.parse(req.body.adjectives)
+        response.nouns = JSON.parse(req.body.nouns)
+        response.verbs = JSON.parse(req.body.verbs)
+        response.lines = JSON.parse(req.body.lines)
+        response.save(function (err) {
+            if (err) {
+                console.log(err)
+                throw err
+            }
+            res.json({ 'success': true })
+            //res.redirect('/profile');
+        })
+
+    })
+
+})
+
 
 router.get('/login', (req, res) => {
     res.render('login', { user: req.user, error: req.flash('error') });

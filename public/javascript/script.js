@@ -16,6 +16,25 @@ $(document).ready(function () {
 		});
 	})
 
+	$('.saveStory').on('click', function () {
+		let storyid = $(this).closest("li").data("storyid")
+		let nouns = $(this).closest("li").find(".nouns").toArray().map(function (i) { return i.innerText })
+		let adjectives = $(this).closest("li").find(".adjectives").toArray().map(function (i) { return i.innerText })
+		let verbs = $(this).closest("li").find(".verbs").toArray().map(function (i) { return i.innerText })
+		let lines = $(this).closest("li").find(".lines").text().split("\n");
+		window.lines = lines
+		$.ajax({
+			url: "save_Story",
+			type: 'PUT',
+			success: function (res) {
+				console.log(res)
+				//$(`li[data-storyid=${res.saveid}]`).save();
+			},
+			data: { storyid: storyid, nouns: JSON.stringify(nouns), verbs: JSON.stringify(verbs), adjectives: JSON.stringify(adjectives), lines: JSON.stringify(lines) },
+
+		});
+	})
+
 	$(".user-words").submit(function (e) {
 		e.preventDefault()
 		let userNouns = $(this).find("input.user-nouns")
