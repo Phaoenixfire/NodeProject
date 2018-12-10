@@ -1,6 +1,13 @@
+
+
 body {
   padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  background-image:
+  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
 }
 
 a {
@@ -39,7 +46,7 @@ h3{
     text-transform: uppercase;
     border-radius: 6px;
     display: inline-block;
-  margin-left: 12%;
+  margin-left: 8%;
 }
 .logOut:hover{
   color: white !important;
@@ -195,22 +202,68 @@ float: left;
 
 .nouns{
 
+  cursor: pointer;
   color: blue;
 }
 
-.verbs{
+.nouns:hover{
 
+  text-decoration: underline;
+}
+
+.verbs{
+  cursor: pointer;
   color:green;
 
 }
 
-.adjectives{
+.verbs:hover{
 
+  text-decoration: underline;
+}
+
+.adjectives{
+  cursor: pointer;
   color: red;
 }
 
+.adjectives:hover{
+
+  text-decoration: underline;
+}
+
+.popupOuter{
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 10000;
+}
+
+.button1, .button2{
+  min-width: 100px;
+  min-height: 100px;
+  padding: 10px;
+}
+.closePopup{
+  cursor: pointer;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+
+}
 /* For the search Page  */
 
+.popupInner{
+  min-height: 300px;
+  width: 600px;
+  padding: 20px;
+  margin: 50px auto;
+  background: white;
+}
 .search-results{
   color: black;
   text-align: center;
@@ -218,17 +271,18 @@ float: left;
 
 .searchPage{
   text-align: center;
-  margin-right: 40%;
+  margin-left: 10%;
 }
 
 .stories{
 
-  width: 48%;
+  width: 45%;
   float: left;
-  padding: 10px;
-  border: 2px solid skyblue;
-  margin: 1%;
+  padding: 5px;
+  border: 1px solid skyblue;
+
 }
+
 
 
 /* Media Size styling */

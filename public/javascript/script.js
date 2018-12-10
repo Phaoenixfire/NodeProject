@@ -31,7 +31,7 @@ $(document).ready(function () {
 				console.log(res)
 				//$(`li[data-storyid=${res.saveid}]`).save();
 			},
-			data: { storyid: storyid, nouns: JSON.stringify(nouns), verbs: JSON.stringify(verbs), adjectives: JSON.stringify(adjectives), lines: JSON.stringify(lines), formattedLines:formattedLines },
+			data: { storyid: storyid, nouns: JSON.stringify(nouns), verbs: JSON.stringify(verbs), adjectives: JSON.stringify(adjectives), lines: JSON.stringify(lines), formattedLines: formattedLines },
 
 		});
 	})
@@ -60,6 +60,60 @@ $(document).ready(function () {
 			//	$(this).find(".nouns").eq(0).text(noun)
 		})
 		//$(".nouns").eq(0).text(noun)
+	})
+
+	let elementToChange = undefined;
+	$("body").on("click", ".changePartOfSpeech", function () {
+		//alert("noun hit")
+		//open a pop up window that enables user to switch part of speech.
+		$(".popupOuter").css("display", "block")
+		elementToChange = $(this)
+		let wordInQuestion = $(this).text()
+		if ($(this).hasClass("nouns")) {
+			//Add text into form do you want to change word to other Part of Speech. Changes text on buttons to verbs and adjectives.
+			$(".formContent").text(`Do you want to change the Part of Speech of ${wordInQuestion}`)
+			$(".button1").text("Verb")
+			$(".button2").text("Adjective")
+
+		}
+		else if ($(this).hasClass("verbs")) {
+			//Add text into form do you want to change word to other Part of Speech. Changes text on buttons to verbs and adjectives.
+			$(".formContent").text(`Do you want to change the Part of Speech of ${wordInQuestion}`)
+			$(".button1").text("Noun")
+			$(".button2").text("Adjective")
+
+		}
+		else if ($(this).hasClass("adjectives")) {
+			//Add text into form do you want to change word to other Part of Speech. Changes text on buttons to verbs and adjectives.
+			$(".formContent").text(`Do you want to change the Part of Speech of ${wordInQuestion}`)
+			$(".button1").text("Verb")
+			$(".button2").text("Noun")
+
+		}
+		//Upon submit of form on pop up window sends new parts of speech to the backend.
+
+
+	})
+
+	$(".button1, .button2").click(function (e) {
+		e.preventDefault();
+		let buttonText = $(this).text()
+		if (buttonText === "Verb") {
+			$(elementToChange).removeClass("nouns").removeClass("adjectives").addClass("verbs")
+
+		}
+		else if (buttonText === "Noun") {
+			$(elementToChange).removeClass("verbs").removeClass("adjectives").addClass("nouns")
+		}
+		else {
+			$(elementToChange).removeClass("verbs").removeClass("nouns").addClass("adjectives")
+		}
+		 
+
+	})
+
+	$(".closePopup").click(function(e){
+		$(".popupOuter").css("display", "none")
 	})
 
 	$(".addNoun").on("click", function () {

@@ -162,12 +162,12 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                 let verbs = story.verbs;
                 let w = word;
                 let testValue = createTestValue(word);
-                for (let i = 0; i < adjectives.length; i++) {
-                    //console.log("found it", word, adjectives[i])
-                    if (adjectives[i] === testValue) {
+                console.log(word + "versus" + testValue)
+                for (let i = 0; i < verbs.length; i++) {
+                    // console.log("found it", word, adjectives[i])
+                    if (verbs[i] === testValue) {
 
-                        w = `<span class="adjectives">${word}</span>`
-
+                        w = `<span class="verbs changePartOfSpeech">${word}</span>`
                     }
                 }
                 for (let i = 0; i < nouns.length; i++) {
@@ -176,17 +176,19 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                     
                     if (nouns[i] === testValue) {
 
-                        w = `<span class="nouns">${word}</span>`
+                        w = `<span class="nouns changePartOfSpeech">${word}</span>`
 
                     }
                 }
-                for (let i = 0; i < verbs.length; i++) {
-                    // console.log("found it", word, adjectives[i])
-                    if (verbs[i] === testValue) {
+                for (let i = 0; i < adjectives.length; i++) {
+                    //console.log("found it", word, adjectives[i])
+                    if (adjectives[i] === testValue) {
 
-                        w = `<span class="verbs">${word}</span>`
+                        w = `<span class="adjectives changePartOfSpeech">${word}</span>`
+
                     }
                 }
+                
                 difwords.push(w)
             })
             story.formattedLines = difwords.join(" ")
@@ -202,7 +204,7 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
 function createTestValue(word) {
 
     let testWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
-    testWord = testWord.replace(/<br>/g, " ");
+    testWord = testWord.replace(/<[^>]*>/g, "")
     return testWord;
 
 }
