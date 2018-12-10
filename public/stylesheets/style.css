@@ -6,25 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
-/*
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font: 13px Helvetica, Arial; }
-form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-#messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
-#messages li:nth-child(odd) { background: #eee; }
-#messages { margin-bottom: 40px }
 
+.user-words{
 
-.public{
-  padding-top: 10px;
-  box-sizing: border-box;
+  float: left;
   width: 50%;
-  float:left;
 }
-*/
 .story {
 
   display: none;
@@ -35,30 +22,7 @@ form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 
    width: 80%;
    margin: auto;
 }
-/*
-.user-nouns{
-float:right;
-display: inline-block;
-clear: right;
-}
-.user-verbs{
-  float: left;
-  display: inline-block;
-  clear: left;
-}
 
-.user-adjectives{
-float: center;
-display: inline-block;
-clear: center;
-}
-
-.user-words{
-  color: lightblue;
-  width: 100%;
-  position: relative;
-}
-*/
 .userWelcome{
   margin-left:7%;
 }
@@ -67,22 +31,90 @@ h3{
   margin-left:7%;
 }
 .logOut{
+ 
+    border: none;
+    color:black !important;
+    font-weight: 100;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
   margin-left: 12%;
 }
-.searchStories{
-
-  padding-left: 40px;
-
+.logOut:hover{
+  color: white !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: black ;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.5s ease 0s;
 }
-.listedStories{
 
+.searchStories{
+ 
+  border: none;
+  color:black !important;
+  font-weight: 100;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+margin-left: 12%;
+}
+.searchStories:hover{
+color: white !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: black ;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.5s ease 0s;
+}
+
+.profilePageButton{
+ 
+  border: none;
+  color:black !important;
+  font-weight: 100;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+margin-left: 12%;
+}
+.profilePageButton:hover{
+color: white !important;
+font-weight: 700 !important;
+letter-spacing: 3px;
+background: black ;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.5s ease 0s;
+}
+
+.listedStories{
+  list-style: none;
+width: 50%;
+float: left;
   padding: 15px;
-  padding-bottom: 30px;
-  border: 2pt black solid;
+  padding-bottom: 10px;
   margin-top: 1%;
   position: relative;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+:hover .listedStories{
+ 
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+  
 }
 
+.directions{
+  width: 85%;
+}
 .addButtons{
   width: 85%;
   padding: 5px;
@@ -95,24 +127,58 @@ h3{
   margin-right:20%;
 
 }
+ 
 .addNoun{
-  
-  width: 15%;
-  margin-left: 25%;
+  color: #fff !important;
+  text-transform: uppercase;
+  background:skyblue;
+  padding: 5px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  width: 25%;
+  margin-left: 4%;
 }
-
+.addNoun:hover {
+  text-shadow: 0px 0px 6px blue;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+  }
 .addVerb{
- 
-  width: 15%;
+  color: #fff !important;
+  text-transform: uppercase;
+  background: lightgreen;
+  padding: 5px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  width: 25%;
   margin-left: 4%;
 }
-
+.addVerb:hover {
+  text-shadow: 0px 0px 6px green;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+  }
 .addAdjective{
- 
-  width: 15%;
+  color: #fff !important;
+  text-transform: uppercase;
+  background: lightcoral;
+  padding: 5px;
+  border-radius: 50px;
+  display: inline-block;
+  border: none;
+  width: 25%;
   margin-left: 4%;
 }
-
+.addAdjective:hover {
+  text-shadow: 0px 0px 6px red;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+  }
 .remove{
 
   right: 20px;
@@ -153,4 +219,27 @@ h3{
 .searchPage{
   text-align: center;
   margin-right: 40%;
+}
+
+.stories{
+
+  width: 48%;
+  float: left;
+  padding: 10px;
+  border: 2px solid skyblue;
+  margin: 1%;
+}
+
+
+/* Media Size styling */
+
+@media only screen and (max-width 768px){
+
+  .stories{
+    width: 95%;
+    float: left;
+    border: 2px solid skyblue;
+    margin: 1%;
+    padding: 3px;
+  }
 }

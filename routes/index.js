@@ -95,7 +95,10 @@ router.post('/saveStory', isLoggedIn, (req, res) => {
     story.userId = req.user._id
     story.date = new Date()
     //story.name = translate.translate(story.name)
+    var test = body.lines.join(' ')
+    console.log(test)
     var promise1 = wordpos.getAdjectives(body.lines.join(' '), function (result) {
+        console.log(promise1)
         return result
     });
     var promise2 = wordpos.getNouns(body.lines.join(' '), function (result) {
@@ -148,17 +151,20 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
             //lines.forEach(function (line, j) {
 
             //let words = line.split(" ")
+            //let tagFreePoem = story.formattedLines.replace(/<br>/g, " ");
             let words = story.formattedLines.split(" ")
             let difwords = []
+            // words = words.replace(/<br>/g, " ");
             words.forEach(function (word) {
-
+                //word = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
                 let adjectives = story.adjectives;
                 let nouns = story.nouns;
                 let verbs = story.verbs;
                 let w = word;
+                let testValue = createTestValue(word);
                 for (let i = 0; i < adjectives.length; i++) {
                     //console.log("found it", word, adjectives[i])
-                    if (adjectives[i] === word) {
+                    if (adjectives[i] === testValue) {
 
                         w = `<span class="adjectives">${word}</span>`
 
@@ -166,7 +172,9 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                 }
                 for (let i = 0; i < nouns.length; i++) {
                     // console.log("found it", word, adjectives[i])
-                    if (nouns[i] === word) {
+                    //console.log(nouns[i] + " verses " + word)
+                    
+                    if (nouns[i] === testValue) {
 
                         w = `<span class="nouns">${word}</span>`
 
@@ -174,7 +182,7 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
                 }
                 for (let i = 0; i < verbs.length; i++) {
                     // console.log("found it", word, adjectives[i])
-                    if (verbs[i] === word) {
+                    if (verbs[i] === testValue) {
 
                         w = `<span class="verbs">${word}</span>`
                     }
@@ -190,6 +198,14 @@ router.get('/profile', isLoggedIn, (req, res) => { // Finds the stories submitte
         res.render('profile', { user: req.user, stories: stories });
     });
 })
+
+function createTestValue(word) {
+
+    let testWord = word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "");
+    testWord = testWord.replace(/<br>/g, " ");
+    return testWord;
+
+}
 /*Hey Andrew, look here for some things you tried -->
 
 router.post('/profile', isLoggedIn, (req, res) => {

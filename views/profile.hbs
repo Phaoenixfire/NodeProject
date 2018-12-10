@@ -10,7 +10,10 @@
 	<a class="logOut" href="/logout">LogOut</a>
 	<a class="searchStories" href="/search">Search</a>
 	{{/if}}
-	<h3>Create an Emoji Story</h3>
+	<h3>Make a Mad Poem</h3>
+	<h6 class="directions"> Directions: Add nouns (blue),verbs (green) and adjectives (red) to match a searched poem. Fill in the blanks and hit submit to create a mad poem. Hit save if the result is hilarious
+		or refresh the page to try again.
+	</h6>
 	<form class="user-words" method="post">
 		<input class="user-nouns" type="publictext" name="name" placeholder="Enter a noun" data-word="nouns"><br>
 		<input class="user-verbs" type="publictext" name="name" placeholder="Enter a verb" data-word="verbs"><br>
@@ -20,6 +23,7 @@
 
 </div>
 <div class="addButtons">
+
 	<button class="addNoun">Add Noun</button>
 	<button class="addVerb">Add Verb</button>
 	<button class="addAdjective">Add Adjective</button>
@@ -30,6 +34,8 @@
 {{#each stories}}
 <li class="listedStories" data-storyId="{{this._id}}">
 	<div class="lines">
+		{{{this.title}}}
+		<br><br>
 		{{{this.formattedLines}}}
 	</div>
 	<br>

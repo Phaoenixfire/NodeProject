@@ -1,18 +1,17 @@
-<h1>Welcome to Emojilibs</h1>
+<h1 class="userWelcome">Welcome to Mad Poems</h1>
 
 {{#if user}}
     username: {{user.username}}
-    <a href="/logout">LogOut</a>
+    <br></br>
+    <a class="profilePageButton" href="/logout">LogOut</a>
+    <a class="profilePageButton" href="/profile">Profile Page</a>
 {{/if}}
 
 <div class="container">
-    <a href="/login">Login</a>
+    <a class="profilePageButton" href="/login">Login</a>
     <br>
-    <a href="/register">Register</a>
+    <a class="profilePageButton" href="/register">Register</a>
      <br>
     
 </div>
 
-{{#each stories}}
-    <li>{{this.name}}</li>
-{{/each}}   
